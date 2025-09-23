@@ -1,5 +1,6 @@
 package com.example.pos.data.remote.repository
 
+import android.util.Log
 import com.example.pos.data.remote.ApiClient
 import com.example.pos.data.remote.model.LoginRequest
 import com.example.pos.data.remote.model.LoginResponse
@@ -10,13 +11,16 @@ class AuthRepository {
     suspend fun login(email: String, password: String): LoginResponse? {
         return withContext(Dispatchers.IO) {
             try {
+                Log.d("AuthRepository", "Mengirim request login ke backend dengan email: $email")
                 val request = LoginRequest(email, password)
-                ApiClient.apiService.login(request)
+                val response = ApiClient.apiService.login(request)
+                Log.d("AuthRepository", "Response dari backend: $response")
+                response
             } catch (e: Exception) {
+                Log.e("AuthRepository", "Error saat login: ", e)
                 null
             }
         }
     }
     // You can add logout logic here if your backend supports it
 }
-

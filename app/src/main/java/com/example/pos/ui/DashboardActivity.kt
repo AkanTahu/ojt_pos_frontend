@@ -10,14 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.pos.MainActivity
 import com.example.pos.R
+import com.example.pos.data.remote.ApiClient
 import com.example.pos.data.remote.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 class DashboardActivity : AppCompatActivity() {
-    private val repository = AuthRepository()
+    private lateinit var repository: AuthRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
+        val apiService = ApiClient.getApiService(this)
+        repository = AuthRepository(apiService)
 
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
         val userName = intent.getStringExtra("user_name") ?: "User"
@@ -26,24 +31,15 @@ class DashboardActivity : AppCompatActivity() {
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
             val prefs = getSharedPreferences("auth", Context.MODE_PRIVATE)
-            val token = prefs.getString("token", null)
-            if (token == null) {
-                Toast.makeText(this, "Token tidak ditemukan.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            btnLogout.isEnabled = false
-            btnLogout.text = "Logout..."
             lifecycleScope.launch {
-                val result = repository.logout(token)
-                btnLogout.isEnabled = true
-                btnLogout.text = "Logout"
+                val result = repository.logout()
                 if (result) {
                     prefs.edit().clear().apply()
-                    Toast.makeText(this@DashboardActivity, "Berhasil logout", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@DashboardActivity, MainActivity::class.java))
+                    // Go back to MainActivity after logout
+                    val intent = Intent(this@DashboardActivity, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
-                } else {
-                    Toast.makeText(this@DashboardActivity, "Logout gagal. Silakan coba lagi.", Toast.LENGTH_SHORT).show()
                 }
             }
         }

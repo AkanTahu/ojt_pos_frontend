@@ -37,6 +37,11 @@
             android:exported="true"
             android:label="Dashboard"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.ProdukActivity"
+            android:exported="true"
+            android:label="Produk"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

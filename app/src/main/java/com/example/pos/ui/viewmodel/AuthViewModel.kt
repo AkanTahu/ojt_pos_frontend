@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel() {
-    private val repository = AuthRepository()
+    private lateinit var repository: AuthRepository
     private val _loginState = MutableStateFlow<LoginResponse?>(null)
     val loginState: StateFlow<LoginResponse?> = _loginState
 

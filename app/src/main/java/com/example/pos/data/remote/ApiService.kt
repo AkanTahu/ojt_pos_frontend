@@ -18,8 +18,11 @@ interface ApiService {
     suspend fun login(@Body request: LoginRequest): LoginResponse
 
     @POST("logout")
-    suspend fun logout(@Header("Authorization") token: String): retrofit2.Response<Unit>
+    suspend fun logout(): retrofit2.Response<Unit>
 
     @GET("products")
     suspend fun getProducts(): ProdukResponse
+
+    @GET("profile")
+    suspend fun getUserMe(): UserResponse
 }

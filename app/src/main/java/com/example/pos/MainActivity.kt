@@ -10,9 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.pos.data.remote.ApiClient
 import com.example.pos.data.remote.model.LoginResponse
+import com.example.pos.data.remote.model.UserResponse
 import com.example.pos.data.remote.repository.AuthRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
@@ -22,21 +25,46 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvError: TextView
     private lateinit var tvRegister: TextView
     private lateinit var tvGreeting: TextView
-    private val repository = AuthRepository()
+    private lateinit var repository: AuthRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val prefs = getSharedPreferences("auth", Context.MODE_PRIVATE)
         val token = prefs.getString("token", null)
+
+        val apiService = ApiClient.getApiService(this)
+        repository = AuthRepository(apiService)
+
         if (token != null) {
-            // Jika token ada, langsung ke dashboard
-            val intent = android.content.Intent(this, com.example.pos.ui.DashboardActivity::class.java)
-            // Jika ingin mengirim nama user, bisa simpan di prefs saat login dan ambil di sini
-            intent.putExtra("user_name", prefs.getString("user_name", "User"))
-            startActivity(intent)
-            finish()
-            return
+            var tokenValid = false
+            var networkError = false
+            runBlocking {
+                try {
+                    val response: UserResponse = ApiClient.getApiService(this@MainActivity).getUserMe()
+                    tokenValid = true
+                    prefs.edit().putString("user_name", response.name).apply()
+                } catch (e: retrofit2.HttpException) {
+                    if (e.code() == 401 || e.code() == 403) {
+                        prefs.edit().clear().apply()
+                    } else {
+                        networkError = true
+                    }
+                } catch (e: Exception) {
+                    networkError = true
+                }
+            }
+            if (tokenValid) {
+                val intent = android.content.Intent(this, com.example.pos.ui.DashboardActivity::class.java)
+                intent.putExtra("user_name", prefs.getString("user_name", "User"))
+                startActivity(intent)
+                finish()
+                return
+            } else if (networkError) {
+                setContentView(R.layout.activity_main)
+                Toast.makeText(this, "Tidak bisa terhubung ke server. Silakan coba lagi nanti.", Toast.LENGTH_LONG).show()
+            }
         }
+        // Jika token tidak valid, lanjut ke login
         setContentView(R.layout.activity_main)
         // ...existing code...
         // (jangan inisialisasi view sebelum setContentView)
@@ -80,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             lifecycleScope.launch {
-                val result = repository.logout(token)
+                val result = repository.logout()
                 if (result) {
                     prefs.edit().clear().apply()
                     updateUI(false)

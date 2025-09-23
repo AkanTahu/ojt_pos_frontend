@@ -20,9 +20,10 @@ class ProdukActivity : AppCompatActivity() {
         val tvError = findViewById<TextView>(R.id.tvProdukError)
         rvProduk.layoutManager = LinearLayoutManager(this)
 
+        // app/src/main/java/com/example/pos/ui/ProdukActivity.kt
         lifecycleScope.launch {
             try {
-                val response = ApiClient.apiService.getProducts()
+                val response = ApiClient.getApiService(this@ProdukActivity).getProducts()
                 rvProduk.adapter = ProdukAdapter(response.data)
                 tvError.visibility = View.GONE
             } catch (e: Exception) {
@@ -30,5 +31,6 @@ class ProdukActivity : AppCompatActivity() {
                 tvError.visibility = View.VISIBLE
             }
         }
+
     }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f6fa"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selamat datang, User!"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#273c75"
+            android:layout_marginBottom="32dp"
+            android:layout_gravity="center_horizontal" />
+        <!-- Semua menu dalam satu kolom, memanjang ke bawah dan ditengah -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/btnMenu1"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Transfer"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#0097e6"
+                android:layout_marginBottom="18dp" />
+            <Button
+                android:id="@+id/btnMenu2"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Kas"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#44bd32"
+                android:layout_marginBottom="18dp" />
+            <Button
+                android:id="@+id/btnMenu3"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Laporan"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#e1b12c"
+                android:layout_marginBottom="18dp" />
+            <Button
+                android:id="@+id/btnMenu4"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Produk"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#8c7ae6"
+                android:layout_marginBottom="18dp" />
+            <Button
+                android:id="@+id/btnMenu5"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Lapor Bos"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#e84118"
+                android:layout_marginBottom="18dp" />
+            <Button
+                android:id="@+id/btnMenu6"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:text="Pengaturan"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:backgroundTint="#273c75"
+                android:layout_marginBottom="18dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

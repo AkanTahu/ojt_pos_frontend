@@ -53,8 +53,11 @@ class MainActivity : AppCompatActivity() {
                 val response: LoginResponse? = repository.login(email, password)
                 if (response != null) {
                     prefs.edit().putString("token", response.token).apply()
-                    updateUI(true)
-                    Toast.makeText(this@MainActivity, "Login berhasil!", Toast.LENGTH_SHORT).show()
+                    // Setelah login sukses, buka DashboardActivity dan kirim nama user
+                    val intent = android.content.Intent(this@MainActivity, com.example.pos.ui.DashboardActivity::class.java)
+                    intent.putExtra("user_name", response.user?.name ?: "User")
+                    startActivity(intent)
+                    finish()
                 } else {
                     tvError.text = "Login gagal. Email atau password salah."
                     tvError.visibility = View.VISIBLE

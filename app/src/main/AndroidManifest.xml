@@ -32,6 +32,11 @@
             android:exported="true"
             android:label="Login"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.DashboardActivity"
+            android:exported="true"
+            android:label="Dashboard"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

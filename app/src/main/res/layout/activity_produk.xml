@@ -1,39 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    android:id="@+id/layoutProdukRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="#f5f6fa">
 
+    <LinearLayout
+        android:id="@+id/layoutProdukContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTitleProduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Produk"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#273c75"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProduk"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:padding="8dp"
+            android:clipToPadding="false" />
+
+        <TextView
+            android:id="@+id/tvProdukError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/tvTitleProduk"
+        android:id="@+id/tvKosongProduk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daftar Produk"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#273c75"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProduk"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#fff"
-        android:padding="8dp"
-        android:clipToPadding="false" />
-
-    <TextView
-        android:id="@+id/tvProdukError"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:text="Produk masih kosong\nSegera tambah produk baru!"
+        android:textSize="20sp"
         android:textColor="@android:color/holo_red_dark"
-        android:visibility="gone"
+        android:background="@android:color/white"
+        android:padding="32dp"
         android:gravity="center"
-        android:layout_marginTop="8dp" />
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:drawableTop="@drawable/ic_add_circle_red_48" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabTambahProduk"
@@ -44,5 +66,4 @@
         android:src="@android:drawable/ic_input_add"
         android:backgroundTint="@android:color/holo_red_dark"
         android:tint="@android:color/white" />
-</LinearLayout>
-
+</FrameLayout>

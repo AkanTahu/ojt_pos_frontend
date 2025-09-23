@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.pos.data.remote.model.TambahProdukRequest
 import com.example.pos.data.remote.model.Produk
+import android.widget.LinearLayout
 
 class ProdukActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -26,14 +27,23 @@ class ProdukActivity : AppCompatActivity() {
 
         val rvProduk = findViewById<RecyclerView>(R.id.rvProduk)
         val tvError = findViewById<TextView>(R.id.tvProdukError)
+        val layoutContent = findViewById<LinearLayout>(R.id.layoutProdukContent)
+        val tvKosongProduk = findViewById<TextView>(R.id.tvKosongProduk)
         rvProduk.layoutManager = LinearLayoutManager(this)
 
-        // app/src/main/java/com/example/pos/ui/ProdukActivity.kt
         lifecycleScope.launch {
             try {
                 val response = ApiClient.getApiService(this@ProdukActivity).getProducts()
-                rvProduk.adapter = ProdukAdapter(response.data)
-                tvError.visibility = View.GONE
+                if (response.data.isNullOrEmpty()) {
+                    layoutContent.visibility = View.GONE
+                    tvKosongProduk.visibility = View.VISIBLE
+                } else {
+                    rvProduk.adapter = ProdukAdapter(response.data)
+                    layoutContent.visibility = View.VISIBLE
+                    tvKosongProduk.visibility = View.GONE
+                    rvProduk.visibility = View.VISIBLE
+                    tvError.visibility = View.GONE
+                }
             } catch (e: Exception) {
                 tvError.text = "Gagal memuat produk: " + (e.localizedMessage ?: "Unknown error")
                 tvError.visibility = View.VISIBLE

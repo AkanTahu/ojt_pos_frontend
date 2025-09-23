@@ -26,8 +26,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val prefs = getSharedPreferences("auth", Context.MODE_PRIVATE)
+        val token = prefs.getString("token", null)
+        if (token != null) {
+            // Jika token ada, langsung ke dashboard
+            val intent = android.content.Intent(this, com.example.pos.ui.DashboardActivity::class.java)
+            // Jika ingin mengirim nama user, bisa simpan di prefs saat login dan ambil di sini
+            intent.putExtra("user_name", prefs.getString("user_name", "User"))
+            startActivity(intent)
+            finish()
+            return
+        }
         setContentView(R.layout.activity_main)
-
+        // ...existing code...
+        // (jangan inisialisasi view sebelum setContentView)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
@@ -35,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         tvError = findViewById(R.id.tvError)
         tvRegister = findViewById(R.id.tvRegister)
         tvGreeting = findViewById(R.id.tvGreeting)
-
-        val prefs = getSharedPreferences("auth", Context.MODE_PRIVATE)
-        val token = prefs.getString("token", null)
-        updateUI(token != null)
 
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString().trim()

@@ -87,5 +87,17 @@
                 android:backgroundTint="#273c75"
                 android:layout_marginBottom="18dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="#e84118"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </ScrollView>

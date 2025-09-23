@@ -42,6 +42,11 @@
             android:exported="true"
             android:label="Produk"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.TransaksiActivity"
+            android:exported="true"
+            android:label="Transaksi"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

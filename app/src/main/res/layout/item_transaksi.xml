@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/tvTransaksiId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#273c75"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvTransaksiTanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#636e72"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tvTransaksiTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0097e6"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tvTransaksiStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#e84118"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tvTransaksiDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#353b48"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+</LinearLayout>
+
+

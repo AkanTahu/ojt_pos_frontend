@@ -30,7 +30,7 @@
                 android:id="@+id/btnMenu1"
                 android:layout_width="240dp"
                 android:layout_height="60dp"
-                android:text="Transfer"
+                android:text="Transaksi"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp"

@@ -48,5 +48,10 @@ class DashboardActivity : AppCompatActivity() {
         btnProduk.setOnClickListener {
             startActivity(Intent(this, ProdukActivity::class.java))
         }
+
+        val btnTransaksi = findViewById<Button>(R.id.btnMenu1)
+        btnTransaksi.setOnClickListener {
+            startActivity(Intent(this, TransaksiActivity::class.java))
+        }
     }
 }

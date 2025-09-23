@@ -5,6 +5,7 @@ import com.example.pos.data.remote.model.LoginResponse
 import com.example.pos.data.remote.model.Produk
 import com.example.pos.data.remote.model.ProdukResponse
 import com.example.pos.data.remote.model.TambahProdukRequest
+import com.example.pos.data.remote.model.TransaksiResponse
 import com.example.pos.data.remote.model.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -27,6 +28,9 @@ interface ApiService {
 
     @GET("profile")
     suspend fun getUserMe(): UserResponse
+
+    @GET("transaksis")
+    suspend fun getTransaksis(): TransaksiResponse
 
     @POST("products")
     suspend fun tambahProduk(@Body request: TambahProdukRequest): Produk

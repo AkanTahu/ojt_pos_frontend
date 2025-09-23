@@ -22,5 +22,18 @@ class AuthRepository {
             }
         }
     }
-    // You can add logout logic here if your backend supports it
+
+    suspend fun logout(token: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("AuthRepository", "Mengirim request logout ke backend dengan token: $token")
+                val response = ApiClient.apiService.logout("Bearer $token")
+                Log.d("AuthRepository", "Response logout: ${response.code()}")
+                response.isSuccessful
+            } catch (e: Exception) {
+                Log.e("AuthRepository", "Error saat logout: ", e)
+                false
+            }
+        }
+    }
 }

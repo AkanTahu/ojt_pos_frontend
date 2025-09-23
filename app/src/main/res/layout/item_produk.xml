@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="12dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="2dp"
+    android:layout_gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tvNamaProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Produk"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#273c75"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvHargaProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga: Rp15000"
+        android:textSize="15sp"
+        android:textColor="#0097e6"
+        android:layout_marginBottom="2dp" />
+
+    <TextView
+        android:id="@+id/tvStokProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stok: 50"
+        android:textSize="15sp"
+        android:textColor="#44bd32"
+        android:layout_marginBottom="2dp" />
+
+    <TextView
+        android:id="@+id/tvKeteranganProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keterangan produk"
+        android:textSize="14sp"
+        android:textColor="#636e72"
+        android:layout_marginBottom="2dp" />
+</LinearLayout>

@@ -47,5 +47,10 @@ class DashboardActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val btnProduk = findViewById<Button>(R.id.btnMenu4)
+        btnProduk.setOnClickListener {
+            startActivity(Intent(this, ProdukActivity::class.java))
+        }
     }
 }

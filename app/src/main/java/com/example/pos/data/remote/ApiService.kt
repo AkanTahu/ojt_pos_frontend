@@ -2,6 +2,7 @@ package com.example.pos.data.remote
 
 import com.example.pos.data.remote.model.LoginRequest
 import com.example.pos.data.remote.model.LoginResponse
+import com.example.pos.data.remote.model.ProdukResponse
 import com.example.pos.data.remote.model.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,4 +19,7 @@ interface ApiService {
 
     @POST("logout")
     suspend fun logout(@Header("Authorization") token: String): retrofit2.Response<Unit>
+
+    @GET("products")
+    suspend fun getProducts(): ProdukResponse
 }

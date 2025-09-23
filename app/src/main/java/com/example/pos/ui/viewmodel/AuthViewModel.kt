@@ -1,22 +1,22 @@
-package com.example.pos.data.remote.repository
+package com.example.pos.ui.viewmodel
 
-import com.example.pos.data.remote.ApiClient
-import com.example.pos.data.remote.model.LoginRequest
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.pos.data.remote.repository.AuthRepository
 import com.example.pos.data.remote.model.LoginResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class AuthRepository {
-    suspend fun login(email: String, password: String): LoginResponse? {
-        return withContext(Dispatchers.IO) {
-            try {
-                val request = LoginRequest(email, password)
-                ApiClient.apiService.login(request)
-            } catch (e: Exception) {
-                null
-            }
+class AuthViewModel : ViewModel() {
+    private val repository = AuthRepository()
+    private val _loginState = MutableStateFlow<LoginResponse?>(null)
+    val loginState: StateFlow<LoginResponse?> = _loginState
+
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            val response = repository.login(email, password)
+            _loginState.value = response
         }
     }
-    // Add logout logic if needed
 }
-

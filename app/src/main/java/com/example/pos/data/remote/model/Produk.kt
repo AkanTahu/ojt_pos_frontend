@@ -1,5 +1,9 @@
 package com.example.pos.data.remote.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Produk(
     val id: Int,
     val user_id: Int,
@@ -13,4 +17,4 @@ data class Produk(
     val keterangan: String?,
     val created_at: String?,
     val updated_at: String?
-)
+) : Parcelable

@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pos.R
 import com.example.pos.data.remote.model.Produk
+import com.example.pos.data.remote.model.ProdukQty
 
 class ProdukTransaksiAdapter(
     private val produkList: List<Produk>,
@@ -62,6 +64,18 @@ class ProdukTransaksiAdapter(
         btnSubmitTransaksi.text = "${jumlahProduk} Produk | Rp$total"
     }
 
+    fun setSubmitAction(activity: AppCompatActivity) {
+        btnSubmitTransaksi.setOnClickListener {
+            val produkTerpilih = produkList.mapNotNull {
+                val qty = qtyMap[it.id] ?: 0
+                if (qty > 0) ProdukQty(it, qty) else null
+            }
+            val intent = android.content.Intent(activity, DetailTransaksiActivity::class.java)
+            intent.putParcelableArrayListExtra("produk_terpilih", ArrayList(produkTerpilih))
+            activity.startActivity(intent)
+        }
+    }
+
     class ProdukViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNamaProduk: TextView = view.findViewById(R.id.tvNamaProduk)
         val tvHargaProduk: TextView = view.findViewById(R.id.tvHargaProduk)
@@ -70,4 +84,3 @@ class ProdukTransaksiAdapter(
         val btnKurang: Button = view.findViewById(R.id.btnKurang)
     }
 }
-

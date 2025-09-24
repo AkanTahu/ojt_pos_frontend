@@ -30,7 +30,9 @@ class TransaksiBaruActivity : AppCompatActivity() {
                     tvErrorProdukTransaksi.text = "Produk masih kosong, segera tambah!"
                     tvErrorProdukTransaksi.visibility = View.VISIBLE
                 } else {
-                    rvProdukTransaksi.adapter = ProdukTransaksiAdapter(response.data, tvTotalTransaksi, btnSubmitTransaksi)
+                    val adapter = ProdukTransaksiAdapter(response.data, tvTotalTransaksi, btnSubmitTransaksi)
+                    rvProdukTransaksi.adapter = adapter
+                    adapter.setSubmitAction(this@TransaksiBaruActivity)
                     rvProdukTransaksi.visibility = View.VISIBLE
                     tvErrorProdukTransaksi.visibility = View.GONE
                 }
@@ -41,4 +43,3 @@ class TransaksiBaruActivity : AppCompatActivity() {
         }
     }
 }
-

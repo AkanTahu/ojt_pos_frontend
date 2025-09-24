@@ -64,15 +64,24 @@ class ProdukTransaksiAdapter(
         btnSubmitTransaksi.text = "${jumlahProduk} Produk | Rp$total"
     }
 
-    fun setSubmitAction(activity: AppCompatActivity) {
+    fun setSubmitAction(activity: AppCompatActivity, pelangganId: Int?) {
         btnSubmitTransaksi.setOnClickListener {
             val produkTerpilih = produkList.mapNotNull {
                 val qty = qtyMap[it.id] ?: 0
                 if (qty > 0) ProdukQty(it, qty) else null
             }
-            val intent = android.content.Intent(activity, DetailTransaksiActivity::class.java)
+            val intent = android.content.Intent(activity, PaymentActivity::class.java)
             intent.putParcelableArrayListExtra("produk_terpilih", ArrayList(produkTerpilih))
+            intent.putExtra("pelanggan_id", pelangganId)
+            intent.putExtra("total_bayar", produkTerpilih.sumOf { it.produk.harga_jual * it.qty })
             activity.startActivity(intent)
+        }
+    }
+
+    fun getProdukTerpilih(): List<ProdukQty> {
+        return produkList.mapNotNull {
+            val qty = qtyMap[it.id] ?: 0
+            if (qty > 0) ProdukQty(it, qty) else null
         }
     }
 

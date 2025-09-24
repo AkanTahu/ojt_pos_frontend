@@ -67,6 +67,11 @@
             android:exported="true"
             android:label="Pembayaran"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.DetailTransaksiSuksesActivity"
+            android:exported="true"
+            android:label="Detail Transaksi Sukses"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

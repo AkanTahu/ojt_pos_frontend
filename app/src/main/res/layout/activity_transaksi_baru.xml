@@ -35,6 +35,26 @@
         android:gravity="center"
         android:layout_marginTop="8dp" />
 
+    <Button
+        android:id="@+id/btnPilihPelanggan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Pelanggan"
+        android:textSize="16sp"
+        android:backgroundTint="#0097e6"
+        android:textColor="#fff"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvNamaPelanggan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pelanggan: -"
+        android:textSize="16sp"
+        android:textColor="#273c75"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,4 +90,3 @@
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>
-

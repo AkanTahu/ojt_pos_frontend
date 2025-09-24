@@ -52,6 +52,11 @@
             android:exported="true"
             android:label="Register"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.TransaksiBaruActivity"
+            android:exported="true"
+            android:label="Transaksi Baru"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

@@ -18,7 +18,14 @@ class TransaksiActivity : AppCompatActivity() {
 
         val rvTransaksi = findViewById<RecyclerView>(R.id.rvTransaksi)
         val tvError = findViewById<TextView>(R.id.tvTransaksiError)
+        val fabTambahTransaksi = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fabTambahTransaksi)
         rvTransaksi.layoutManager = LinearLayoutManager(this)
+
+        fabTambahTransaksi.visibility = View.VISIBLE
+        fabTambahTransaksi.setOnClickListener {
+            val intent = android.content.Intent(this, TransaksiBaruActivity::class.java)
+            startActivity(intent)
+        }
 
         lifecycleScope.launch {
             try {
@@ -39,4 +46,3 @@ class TransaksiActivity : AppCompatActivity() {
         }
     }
 }
-

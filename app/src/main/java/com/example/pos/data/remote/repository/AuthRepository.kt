@@ -36,4 +36,25 @@ class AuthRepository(private val apiService: ApiService) {
             }
         }
     }
+
+    suspend fun register(name: String, email: String, toko: String, password: String, passwordConfirmation: String): LoginResponse? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val requestBody = mapOf(
+                    "name" to name,
+                    "email" to email,
+                    "toko" to toko,
+                    "password" to password,
+                    "password_confirmation" to passwordConfirmation
+                )
+                Log.d("AuthRepository", "Request register: $requestBody")
+                val response = apiService.register(requestBody)
+                Log.d("AuthRepository", "Response register: $response")
+                response
+            } catch (e: Exception) {
+                Log.e("AuthRepository", "Error saat register: ", e)
+                null
+            }
+        }
+    }
 }

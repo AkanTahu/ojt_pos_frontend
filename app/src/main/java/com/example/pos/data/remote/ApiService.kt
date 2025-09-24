@@ -34,4 +34,7 @@ interface ApiService {
 
     @POST("products")
     suspend fun tambahProduk(@Body request: TambahProdukRequest): Produk
+
+    @POST("register")
+    suspend fun register(@Body body: Map<String, String>): LoginResponse
 }

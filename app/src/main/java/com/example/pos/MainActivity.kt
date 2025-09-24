@@ -120,7 +120,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvRegister.setOnClickListener {
-            Toast.makeText(this, "Fitur register belum tersedia.", Toast.LENGTH_SHORT).show()
+            val intent = android.content.Intent(this, com.example.pos.ui.RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 

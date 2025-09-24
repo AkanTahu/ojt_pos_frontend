@@ -17,7 +17,7 @@ class TransaksiAdapter(private val list: List<Transaksi>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: TransaksiViewHolder, position: Int) {
         val transaksi = list[position]
         holder.tvTransaksiId.text = "ID Transaksi: ${transaksi.id}"
-        holder.tvTransaksiTanggal.text = formatTanggal(transaksi.created_at)
+        holder.tvTransaksiTanggal.text = transaksi.created_at?.let { formatTanggal(it) }
         holder.tvTransaksiTotal.text = "Total: Rp${transaksi.total_harga}"
         holder.tvTransaksiStatus.text = "Status: ${transaksi.status_pembayaran}"
         holder.tvTransaksiDetail.text = transaksi.detail_transaksi.joinToString("\n") {

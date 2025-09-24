@@ -1,6 +1,7 @@
 package com.example.pos.ui
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class DetailTransaksiActivity : AppCompatActivity() {
         val rvDetailProduk = findViewById<RecyclerView>(R.id.rvDetailProduk)
         val tvTotalHarga = findViewById<TextView>(R.id.tvTotalHarga)
         val tvTotalLaba = findViewById<TextView>(R.id.tvTotalLaba)
+        val btnPembayaran = findViewById<Button>(R.id.btnPembayaran)
 
         val produkList = intent.getParcelableArrayListExtra<ProdukQty>("produk_terpilih") ?: arrayListOf()
         rvDetailProduk.layoutManager = LinearLayoutManager(this)
@@ -30,5 +32,12 @@ class DetailTransaksiActivity : AppCompatActivity() {
         }
         tvTotalHarga.text = "Total: Rp${totalHarga}"
         tvTotalLaba.text = "Laba: Rp${totalLaba}"
+
+        btnPembayaran.setOnClickListener {
+            val intent = android.content.Intent(this, PaymentActivity::class.java)
+            intent.putExtra("total_bayar", totalHarga)
+            intent.putParcelableArrayListExtra("produk_terpilih", produkList)
+            startActivity(intent)
+        }
     }
 }

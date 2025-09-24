@@ -44,5 +44,16 @@
         android:textSize="16sp"
         android:textColor="#0097e6"
         android:layout_marginTop="4dp" />
-</LinearLayout>
 
+    <Button
+        android:id="@+id/btnPembayaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PEMBAYARAN"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="#273c75"
+        android:textColor="#fff"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp" />
+</LinearLayout>
